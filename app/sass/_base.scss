@@ -1,0 +1,22 @@
+.container
+{
+  position: relative;
+  width: $screen-lg;
+  @media (max-width: $screen-lg) {
+    width: $screen-md;
+  }
+  @media (max-width: $screen-md) {
+    width: $screen-sm;
+  }
+}
+
+
+.clearfix
+{
+  *zoom: 1;
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}

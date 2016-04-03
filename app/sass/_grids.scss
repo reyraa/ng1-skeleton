@@ -1,0 +1,84 @@
+
+$grid-columns: 16;
+$grid-max-width: 65em;
+
+
+// breakpoints
+$breakpoint-small: "only screen and (min-width: 20em)";
+$breakpoint-medium: "only screen and (min-width: 30em)";
+
+
+@mixin border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  @include border-box;
+}
+
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.row {
+  width: 100%;
+  margin: 0 auto;
+  // you can extend .clearfix here
+  // but using .clearfix class name on elements
+  // reduces the output css file notably
+}
+
+[class*='column-'] {
+  float: left;
+  padding: 0 1em;
+  width: 100%;
+  min-height: 1px;
+}
+
+@media only screen and (min-width: $screen-lg) {
+  .row {
+    width: 100%;
+    max-width: $grid-max-width;
+  }
+  @for $i from 1 through $grid-columns {
+    .column-lg-#{$i} {
+      width: 100% / $grid-columns * $i;
+    }
+  }
+}
+
+@media only screen and (max-width: $screen-lg) {
+  .row {
+    width: 100%;
+    max-width: $grid-max-width;
+  }
+  @for $i from 1 through $grid-columns {
+    .column-md-#{$i} {
+      width: 100% / $grid-columns * $i;
+    }
+  }
+}
+
+@media only screen and (max-width: $screen-md) {
+  .row {
+    width: 95%;
+    max-width: $grid-max-width;
+  }
+  @for $i from 1 through $grid-columns {
+    .column-sm-#{$i} {
+      width: 100% / $grid-columns * $i;
+    }
+  }
+}

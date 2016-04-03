@@ -1,0 +1,99 @@
+
+
+/**********************
+    Box Properties
+***********************/
+
+
+.overflow-hidden
+{
+  overflow: hidden;
+}
+.overflow-x-scroll
+{
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.overflow-y-scroll
+{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.border-box
+{
+  box-sizing: border-box;
+}
+
+/**********************
+ Positioning Properties
+***********************/
+
+
+.expanded
+{
+  width: 100%;
+}
+
+.keep-image img
+{
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+button, .button
+{
+  // used for under all forms
+  &.full
+  {
+    width: 96%;
+  }
+}
+/****************************
+    puddings and margins
+****************************/
+
+// ths state fixes the needed spaces for the pinned header
+
+.keep-header
+{
+  padding-top: $header-height;
+  @media (max-width: $screen-lg) {
+    padding-top: $header-height * 0.8333;
+  }
+}
+
+
+
+
+// defining lists to create iterations on
+$corner-list: top right left bottom;
+$size-list: 5em 2.3em 1.65em 0.65em;
+$size-name: big normal small tiny;
+
+// regular paddings for using in all pages
+@each $current-size in $size-list {
+  $i: index($size-list, $current-size);
+
+    @each $current-corner in $corner-list {
+      $j: index($corner-list, $current-corner);
+      .padding-#{$current-corner}-#{nth($size-name, $i)} {
+        padding-#{$current-corner}: $current-size;
+      }
+    }
+
+}
+
+
+// regular margins for using in all pages
+@each $current-size in $size-list {
+  $i: index($size-list, $current-size);
+
+  @each $current-corner in $corner-list {
+    $j: index($corner-list, $current-corner);
+    .margin-#{$current-corner}-#{nth($size-name, $i)} {
+      margin-#{$current-corner}: $current-size;
+    }
+  }
+
+}

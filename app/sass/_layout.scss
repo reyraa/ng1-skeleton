@@ -1,0 +1,113 @@
+/*===================================
+   Positioning and overall layouts
+=================================*/
+.l-pinned
+{
+  position: fixed !important;
+}
+
+.l-sticky
+{
+  position: absolute !important;
+}
+.l-sticky, .l-pinned
+{
+
+  &.to-left
+  {
+    left: 0 !important;
+  }
+  &.to-bottom
+  {
+    bottom: 0 !important;
+  }
+  &.to-right
+  {
+    right: 0 !important;
+  }
+  &.to-top
+  {
+    top: 0 !important;
+  }
+  &.to-center
+  {
+    left: 50% !important;
+    @include transform( translateX(-50%) );
+  }
+}
+
+.l-centered
+{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.l-float-right
+{
+  float: right;
+}
+.l-float-left
+{
+  float: left;
+}
+
+
+
+
+
+
+
+/*===================================
+   Layouts : HEADER
+=================================*/
+.l-header
+{
+  // header is pinned
+  height: $header-height;
+  z-index: $index-off-canvas-menu;
+  .container
+  {
+    height: 100%;
+  }
+
+  @media (max-width: $screen-lg) {
+    height: $header-height * 0.8333;
+  }
+
+
+}
+
+
+/*===================================
+   Layouts : Tabs
+=================================*/
+
+
+.l-tabs
+{
+  position: relative;
+  .l-tabs-header
+  {
+    position: relative;
+  }
+
+  .l-tabs-content
+  {
+    position: relative;
+
+    & > .l-tab-item
+    {
+      // I don't use sticky layout for this par, because it's not a layout
+      // this is just a way to hide the inactive tab
+      position: absolute;
+      opacity: 0;
+      top: 0;
+
+      &.current
+      {
+        position: relative;
+        opacity: 1;
+      }
+    }
+  }
+}

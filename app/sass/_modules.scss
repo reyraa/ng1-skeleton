@@ -1,0 +1,385 @@
+/*=============================
+         HEADER
+==============================*/
+
+
+.m-header
+{
+  @include gradient(vertical, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,0) 100%);
+  figure
+  {
+    @include size(auto, 270px);
+    margin: 22px 0 0 18px;
+    img
+    {
+      vertical-align: middle;
+    }
+    img.logo-text
+    {
+      width: 200px;
+    }
+    img.logo-shape
+    {
+      width: 30px;
+    }
+
+    @media (max-width: $screen-lg) {
+      @include size(auto, 30px);
+      img.logo-text
+      {
+        display: none;
+      }
+    }
+
+    @media (max-width: $screen-md) {
+      @include size(auto, 190px);
+      img.logo-text
+      {
+        display: inline-block;
+        width: 150px;
+      }
+    }
+
+  }
+
+  .menu-toggler
+  {
+    display: none;
+    @include square(50px);
+    top: 15px;
+    right: 22px;
+    padding: 9px;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 3;
+    transition: all ease 300ms;
+    &:hover
+    {
+      color: $base-color-2-1;
+    }
+  }
+
+
+
+  nav
+  {
+    padding: 32px 0 0 0;
+    font-size: 1.095em;
+    transition: all ease 300ms;
+    z-index: 1;
+    a
+    {
+      display: inline-block;
+      padding: 0 0.7em;
+      color: $base-color-4-1;
+      cursor: pointer;
+      transition: all ease 20ms;
+
+      &:hover
+      {
+        color: $base-color-2-1;
+      }
+    }
+
+    @media (max-width: $screen-md) {
+      display: table;
+      @include square(100%);
+      position: fixed;
+      left: 0;
+      top: 70px;
+      padding-top: 0 !important;
+      background: rgba(255,255,255,0.8);
+      opacity: 0;
+      transform: scale(1.2);
+      text-align: center;
+      & > div
+      {
+        display: table-cell;
+        @include size(auto, 100%);
+        vertical-align: middle;
+      }
+
+      a
+      {
+        @include size(40px, 70%);
+        line-height: 40px;
+        color: darken($base-color-4-1, 10%);
+        border-bottom: solid 1px $base-color-4-3;
+      }
+    }
+  }
+
+
+  @media (max-width: $screen-md) {
+    .menu-toggler
+    {
+      display: block;
+    }
+    &.active
+    {
+      nav
+      {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+
+}
+
+
+
+/*=============================
+         product details
+==============================*/
+
+.m-product-summery
+{
+  height: 315px;
+  @media (max-width: $screen-lg) {
+    height: 210px;
+    button
+    {
+      margin-top: 1em !important;
+    }
+  }
+  @media (max-width: $screen-md) {
+    height: auto;
+    padding-top: 0.65em;
+  }
+  p
+  {
+    max-width: 95%;
+    @media (max-width: $screen-lg) {
+      padding-bottom: 4px !important;;
+    }
+  }
+  input[type="number"]
+  {
+    width: 35px;
+  }
+}
+
+
+.m-color-picker
+{
+  width: 75%;
+
+  @media (max-width: $screen-sm) {
+    padding-top: 0.65em;
+  }
+
+  input[type='radio']
+  {
+    position: absolute;
+    visibility: hidden;
+
+    & + label
+    {
+      @include square(37px);
+      margin: -3px 0 0 -1px;
+      border: solid 4px $base-color-4-4;
+      background: red;
+      border-radius: 50%;
+      transition: all ease 400ms;
+      cursor: pointer;
+
+      &:hover
+      {
+        border: solid 4px lighten($base-color-4-3, 10%) !important;
+      }
+    }
+
+    &:checked + label
+    {
+      border: solid 4px $base-color-4-3;
+    }
+  }
+}
+
+
+.m-pricing
+{
+  background: lighten($base-color-4-3, 12.5%);
+  @media (max-width: $screen-lg) {
+    margin-top: 2.35em;
+    background: transparent;
+  }
+
+  header
+  {
+    border-bottom: solid 1px $base-color-4-3;
+    @media (max-width: $screen-lg) {
+      text-align: left !important;
+    }
+  }
+
+  h3
+  {
+    font-size: 2em;
+    font-weight: 400;
+  }
+
+
+  h4
+  {
+    line-height: 1.5em;
+    color: $base-color-4-1;
+  }
+
+  ul
+  {
+    list-style-type: disc;
+    li
+    {
+      color: $base-color-4-1;
+      font-size: 0.9em;
+      line-height: 1.8em;
+    }
+
+  }
+}
+
+.m-item-desc-tabs
+{
+  background: lighten($base-color-4-3, 12.5%);
+  @media (max-width: $screen-lg) {
+    margin-top: 2.35em;
+  }
+  .l-tabs-header
+  {
+    height: 38px;
+    line-height: 38px;
+    border-bottom: solid 1px $base-color-1-2;
+
+    & > .l-tab-header-item
+    {
+      display: inline-block;
+      height: 38px;
+      border-bottom: solid 0 $base-color-1-3;
+      font-weight: 600;
+      color: $base-color-4-1;
+      cursor: pointer;
+      transition: all ease 200ms;
+
+      &:hover
+      {
+        color: lighten($base-color-4-1, 15%);
+        border-bottom-width: 2px;
+      }
+
+      &.current
+      {
+        border-bottom-width: 5px;
+      }
+    }
+  }
+}
+
+/*=============================
+         form Elements
+==============================*/
+form, .form
+{
+  .button, button
+  {
+    line-height: 36px;
+    color: $base-color-4-4;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border: 0;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    cursor: pointer;
+    transition: all ease 200ms;
+    box-sizing: border-box;
+
+    // for use as submit, purchase and any other position committing buttons
+    &.primary
+    {
+      background-color: $base-color-1-3;
+      border-bottom-color: $base-color-1-2;
+      &:hover
+      {
+        background-color: lighten($base-color-1-3, 15%);
+      }
+    }
+
+    // for use as warn, extreme notify like remove actions
+    &.secondary
+    {
+      background-color: $base-color-2-3;
+      border-bottom-color: $base-color-2-2;
+      &:hover
+      {
+        background-color: lighten($base-color-2-3, 15%);
+      }
+    }
+
+    // for use as escape, skip and cancel buttons
+    &.neutral
+    {
+      background-color: $base-color-4-3;
+      border-bottom-color: $base-color-4-2;
+      &:hover
+      {
+        background-color: lighten($base-color-4-3, 15%);
+      }
+    }
+    
+
+
+  }
+
+
+  // all item must stay vertically aligned to each other
+  label, input, button, select, fieldset
+  {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  label
+  {
+    font-size: 0.9em;
+    color: $base-color-4-1;
+    padding-right: 4px;
+  }
+  input[type='text'],
+  input[type='number'],
+  input[type='assword'],
+  input[type='email']
+  {
+    line-height: 30px;
+    border: solid 1px $base-color-4-3;
+    font-size: 1.2em;
+    text-align: center;
+  }
+}
+
+
+table
+{
+  tr
+  {
+    line-height: 30px;
+    color: $base-color-4-1;
+    font-size: 0.9em;
+
+    &:nth-child(2n)
+    {
+      background: rgba(255,255,255,0.5);
+    }
+
+    &:hover
+    {
+      background: $base-color-4-4;
+      td
+      {
+        color: darken($base-color-4-1, 100%);
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<header class="l-header m-header expanded l-pinned to-left to-top" ng-class="{'active': flags.menu}">
+    <div class="container l-centered clearfix">
+        <figure class=l-float-left>
+            <img src="/images/logo-shape.svg" alt="commerce tools logo" class="logo-shape">
+            <img src="/images/logo-text.svg" alt="commerce tools title" class="logo-text">
+        </figure>
+        <nav class="l-float-right">
+            <div>
+                <a ng-click="flags.menu = false">Why fictitiouStore</a>
+                <a ng-click="flags.menu = false">Who are we</a>
+                <a ng-click="flags.menu = false">Payment</a>
+                <a ng-click="flags.menu = false">How we work</a>
+                <a ng-click="flags.menu = false">The shop</a>
+            </div>
+        </nav>
+        <a class="l-sticky menu-toggler" ng-click="flags.menu = !flags.menu"><span class="icon-menu"></span></a>
+        
+    </div>
+</header>

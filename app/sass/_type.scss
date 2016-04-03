@@ -1,0 +1,55 @@
+body *
+{
+  font-family: sans-serif;
+  font-weight:300;
+}
+
+
+h1, h2, h3, h4, h5
+{
+  color: $base-color-1-1;
+}
+
+h2
+{
+  font-size: 1.25em;
+  word-spacing: 2px;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+
+p
+{
+  color: $base-color-4-1;
+  padding-top: 1em;
+  font-size: 0.93em;
+  line-height: 1.15em;
+  font-weight: 300;
+  padding-bottom: 5px;
+}
+
+b
+{
+  font-weight: 600;
+}
+i
+{
+  font-style: italic;
+}
+
+
+
+
+.right-aligned
+{
+  text-align: right !important;
+}
+.left-aligned
+{
+  text-align: left !important;
+}
+.center-aligned
+{
+  text-align: center !important;
+}

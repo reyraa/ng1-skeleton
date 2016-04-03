@@ -1,0 +1,61 @@
+<section class="row clearfix">
+
+    <figure class="keep-image column-lg-6 column-md-7 column-sm-16">
+        <img src="/images/photo.jpg" alt="">
+    </figure>
+    <section class="m-product-summery column-lg-6 column-md-9 column-sm-16">
+            <h2 ng-bind="product.title"></h2>
+            <p class="padding-bottom-small" ng-bind="product.summery"></p>
+
+            <form>
+
+                <fieldset>
+                    <label for="qt" class="form-label">QT.</label>
+                    <input type="number" id="qt" ng-model="purchase.quantity" min="1" class="center-aligned">
+                </fieldset>
+
+                <fieldset class="m-color-picker right-aligned">
+                    <label class="form-label">COLOR</label>
+
+                    <fieldset ng-repeat="color in product.colors">
+                        <input type="radio" name="colors" id="color-{{color.id}}">
+                        <label for="color-{{color.id}}" style="background-color: {{color.code}};"></label>
+                    </fieldset>
+                </fieldset>
+
+                <button class="primary full margin-top-small">BUY THIS PRODUCT</button>
+            </form>
+
+        </section>
+
+    <aside class="m-pricing column-lg-4 column-md-7 column-sm-16 right-aligned padding-bottom-tiny">
+        <header class="padding-top-tiny padding-right-small padding-bottom-tiny">
+            <h3>{{product.price.currency}} {{purchase.quantity * product.price.value}}</h3>
+            <h4><i>or {{purchase.quantity}}x <b>{{product.price.currency}} {{product.price.value}}</b></i></h4>
+        </header>
+
+        <ul class="padding-top-small left-aligned padding-right-tiny padding-left-small">
+            <li ng-repeat="specification in product.specifications" ng-bind="specification"></li>
+        </ul>
+    </aside>
+    <section class="column-lg-16 column-md-9 column-sm-16">
+        <section class="l-tabs m-item-desc-tabs padding-top-tiny padding-left-small padding-right-small" ng-init="flags.tabs.itemDescription = 0">
+            <nav class="l-tabs-header">
+                <a index="0" tabs="itemDescription" ng-class="{'current': flags.tabs.itemDescription == '0'}" class="l-tab-header-item margin-right-small">INFO</a>
+                <a index="1" tabs="itemDescription" ng-class="{'current': flags.tabs.itemDescription == '1'}" class="l-tab-header-item margin-right-small">DETAILS</a>
+            </nav>
+            <section class="l-tabs-content padding-top-tiny padding-bottom-tiny">
+                <div class="l-tab-item" ng-class="{'current': flags.tabs.itemDescription == '0'}" ng-bind-html="product.description"></div>
+                <div class="l-tab-item" ng-class="{'current': flags.tabs.itemDescription == '1'}">
+                    <table class="expanded">
+                        <tr ng-repeat="(key, value) in product.details">
+                            <td ng-bind="key"></td>
+                            <td ng-bind="value"></td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+    </section>
+</section>
