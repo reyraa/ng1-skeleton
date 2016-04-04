@@ -19,14 +19,17 @@ module.exports = function (grunt) {
     },
     // compile sass files into css
     sass: {
-      options: {
-        sourceMap: true
-      },
-      dist: {
-        files: {
+      develop: {
+        options: {
+          sourceMap: true
+        },
+        dist: {
+          files: {
             '<%=config.appUrl %>css/main.css': '<%=config.appUrl %>sass/main.scss'
+          }
         }
       }
+
     },
     // create suitable prefix for all browsers
     autoprefixer: {
@@ -177,7 +180,7 @@ module.exports = function (grunt) {
 
     'clean:build',
     'copy:build',
-    'sass',
+    'sass:develop',
     'autoprefixer',
     'useminPrepare:html',
     'concat',
@@ -188,7 +191,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build:server',[
     'concat',
     'copy:develop',
-    'sass',
+    'sass:develop',
     'autoprefixer',
     'jshint:serve'
   ]);

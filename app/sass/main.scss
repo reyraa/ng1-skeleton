@@ -1,11 +1,5 @@
 
-@import "reset";
-@import "variables";
-@import "mixins";
-@import "icons";
-@import "grids";
-@import "type";
-@import "base";
-@import "layout";
-@import "modules";
-@import "states";
+@import "base/main";
+@import "layout/main";
+@import "module/main";
+@import "status/main";

@@ -1,0 +1,57 @@
+/*===================================
+   Positioning and overall layouts
+=================================*/
+.l-pinned
+{
+  position: fixed !important;
+}
+
+.l-sticky
+{
+  position: absolute !important;
+}
+.l-sticky, .l-pinned
+{
+
+  &.to-left
+  {
+    left: 0 !important;
+  }
+  &.to-bottom
+  {
+    bottom: 0 !important;
+  }
+  &.to-right
+  {
+    right: 0 !important;
+  }
+  &.to-top
+  {
+    top: 0 !important;
+  }
+  &.to-center
+  {
+    left: 50% !important;
+    @include transform( translateX(-50%) );
+  }
+}
+
+.l-centered
+{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.l-float-right
+{
+  float: right;
+}
+.l-float-left
+{
+  float: left;
+}
+
+
+
+
+
