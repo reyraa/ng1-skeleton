@@ -19,16 +19,25 @@ module.exports = function (grunt) {
     },
     // compile sass files into css
     sass: {
-      develop: {
+      development: {
         options: {
           sourceMap: true
         },
-        dist: {
-          files: {
-            '<%=config.appUrl %>css/main.css': '<%=config.appUrl %>sass/main.scss'
-          }
+        files: {
+          '<%=config.devUrl %>css/main.css': '<%=config.appUrl %>sass/main.scss'
+        }
+
+      },
+      production: {
+        options: {
+          sourceMap: true
+        },
+        files: {
+          '<%=config.distUrl %>css/main.css': '<%=config.appUrl %>sass/main.scss'
         }
       }
+
+
 
     },
     // create suitable prefix for all browsers
@@ -38,23 +47,32 @@ module.exports = function (grunt) {
       },
       dist:{
         files:{
-          '<%=config.appUrl %>css/main.css':'<%=config.appUrl %>css/main.css',
-          //'.temp/concat/css/main.css':'.temp/concat/css/main.css'
+          '<%=config.devUrl %>css/main.fixed.css':'<%=config.devUrl %>css/main.css',
         }
       }
     },
 
     // concatenating all javascripts file
     concat: {
-      basic_and_extras: {
-        files: {
-          'app/javascripts/controllers.js': 'app/javascripts/controllers/*.js',
-          'app/javascripts/directives.js': 'app/javascripts/directives/*.js',
-          'app/javascripts/services.js': 'app/javascripts/services/*.js',
-          'app/javascripts/filters.js': 'app/javascripts/filters/*.js',
-          'app/javascripts/app.js': 'app/javascripts/app.js'
-        }
+      development: {
+          files: {
+            '<%=config.devUrl %>/javascripts/controllers.js': '<%=config.appUrl %>/javascripts/controllers/*.js',
+            '<%=config.devUrl %>/javascripts/directives.js': '<%=config.appUrl %>/javascripts/directives/*.js',
+            '<%=config.devUrl %>/javascripts/services.js': '<%=config.appUrl %>/javascripts/services/*.js',
+            '<%=config.devUrl %>/javascripts/filters.js': '<%=config.appUrl %>/javascripts/filters/*.js',
+            '<%=config.devUrl %>/javascripts/app.js': '<%=config.appUrl %>/javascripts/app.js'
+          }
+      },
+      production:{
+          files: {
+            '<%=config.distUrl %>/javascripts/controllers.js': '<%=config.appUrl %>/javascripts/controllers/*.js',
+            '<%=config.distUrl %>/javascripts/directives.js': '<%=config.appUrl %>/javascripts/directives/*.js',
+            '<%=config.distUrl %>/javascripts/services.js': '<%=config.appUrl %>/javascripts/services/*.js',
+            '<%=config.distUrl %>/javascripts/filters.js': '<%=config.appUrl %>/javascripts/filters/*.js',
+            '<%=config.distUrl %>/javascripts/app.js': '<%=config.appUrl %>/javascripts/app.js'
+          }
       }
+
     },
 
     // build node javascripts server
@@ -81,14 +99,14 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%=config.appUrl %>javascripts/{,*/}*.js'],
-        tasks: ['concat'],
+        tasks: ['concat:development'],
         options: {
           livereload: '<%= connect.target.options.livereload %>'
         }
       },
       sass: {
         files: ['<%=config.appUrl %>sass/{,*/}*.{scss,sass}'],
-        tasks: ['sass','autoprefixer'],
+        tasks: ['sass:development','autoprefixer'],
         options: {
           livereload: '<%= connect.target.options.livereload %>'
         }
@@ -115,11 +133,11 @@ module.exports = function (grunt) {
     },
     // replace all javascript and css files with minfy one in html
     usemin: {
-      html: "dist/index.html", 
+      html: "<%=config.distUrl %>/index.html",
     },
     // copy necessary files to dist folder
     copy: {
-      build: {
+      production: {
         files:[
           {src: '<%=config.appUrl %>index.html',dest: '<%=config.distUrl %>index.html'},
           {
@@ -142,12 +160,25 @@ module.exports = function (grunt) {
           }
         ] 
       },
-      develop: {
+      development: {
         files:[
+          {src: '<%=config.appUrl %>index.html',dest: '<%=config.devUrl %>index.html'},
           {
-            cwd: 'bower_components/bootstrap-sass-rtl/dist/fonts',  // set working folder / root to copy
+            cwd: '<%=config.appUrl %>fonts',  // set working folder / root to copy
             src: '**/*',           // copy all files and subfolders
-            dest: '<%=config.appUrl %>fonts',    // destination folder
+            dest: '<%=config.devUrl %>/fonts',    // destination folder
+            expand: true           // required when using cwd
+          },
+          {
+            cwd: '<%=config.appUrl %>images',  // set working folder / root to copy
+            src: '**/*',           // copy all files and subfolders
+            dest: '<%=config.devUrl %>images',    // destination folder
+            expand: true           // required when using cwd
+          },
+          {
+            cwd: '<%=config.appUrl %>',  // set working folder / root to copy
+            src: '**/*.html',           // copy all files and subfolders
+            dest: '<%=config.devUrl %>',    // destination folder
             expand: true           // required when using cwd
           }
         ] 
@@ -155,8 +186,11 @@ module.exports = function (grunt) {
     },
     // clean unwanted folders
     clean: {
-      build: {
+      production: {
         src: ["dist/*",'.tmp/*']
+      },
+      development: {
+        src: ["dev/*",'.tmp/*']
       }
     },
     // validate all javascript files by jshint
@@ -176,29 +210,49 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('build',[
+  /**
+   *
+   * This task will create the distribution version of the project
+   * containing minified javaScript files and uglified css files
+   * The destination is /dist
+   *
+   */
+  grunt.registerTask('production',[
 
-    'clean:build',
-    'copy:build',
-    'sass:develop',
+    'clean:production',
+    'copy:production',
+    'sass:production',
     'autoprefixer',
     'useminPrepare:html',
-    'concat',
-    'uglify',
+    'concat:production',
+    //'uglify',
     'cssmin',
     'usemin'
   ]);
-  grunt.registerTask('build:server',[
-    'concat',
-    'copy:develop',
-    'sass:develop',
-    'autoprefixer',
-    'jshint:serve'
+
+
+  /**
+   *
+   * This task will create development files meaning
+   * concats JavaScript files and renders SASS files but no minimization.
+   * the destination of output files is dev/ directory
+   *
+   */
+  grunt.registerTask('development',[
+    'concat:development',
+    'copy:development',
+    'sass:development',
+    'autoprefixer'
+    //,'jshint:serve'
   ]);
 
+  /**
+   *
+   * This task works same as build:serve, but watches for upcoming changes too.
+   *
+   */
   grunt.registerTask('serve', [
-    'concat',
-    'build:server',
+    'development',
     'connect:target',
     'watch'
   ]);
