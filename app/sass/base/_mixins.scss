@@ -39,44 +39,6 @@
   }
 }
 
-//===============================================
-// CSS3 properties
-//===============================================
-@mixin transform ($transform) {
-  -webkit-transform: $transform;
-  -moz-transform: $transform;
-  -o-transform: $transform;
-  transform: $transform;
-}
-
-@mixin transform-origin ($x, $y) {
-  -webkit-transform-origin: $x $y;
-  -moz-transform-origin: $x $y;
-  -o-transform-origin: $x $y;
-  transform-origin: $x $y;
-}
-
-@mixin transition ($transform) {
-  -webkit-transition: $transform;
-  -moz-transition: $transform;
-  -o-transition: $transform;
-  transition: $transform;
-}
-
-@mixin transform-style ($style) {
-  -webkit-transform-style: $style;
-  -moz-transform-style: $style;
-  -o-transform-style: $style;
-  -ms-transform-style: $style;
-  transform-style: $style;
-}
-
-@mixin animation ($animation) {
-  -webkit-animation: $animation;
-  -moz-animation: $animation;
-  -o-animation: $animation;
-  animation: $animation;
-}
 
 //===============================================
 // Other

@@ -89,7 +89,7 @@ module.exports = function (grunt) {
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect.static('./app')
+              connect.static('./dev')
             ];
           }
         }
@@ -157,6 +157,12 @@ module.exports = function (grunt) {
             src: '**/*.html',           // copy all files and subfolders
             dest: '<%=config.distUrl %>',    // destination folder
             expand: true           // required when using cwd
+          },
+          {
+            cwd: './libs',  // set working folder / root to copy
+            src: '**/*',           // copy all files and subfolders
+            dest: '<%=config.distUrl %>/libs',    // destination folder
+            expand: true           // required when using cwd
           }
         ] 
       },
@@ -180,6 +186,12 @@ module.exports = function (grunt) {
             src: '**/*.html',           // copy all files and subfolders
             dest: '<%=config.devUrl %>',    // destination folder
             expand: true           // required when using cwd
+          },
+          {
+            cwd: './libs',  // set working folder / root to copy
+            src: '**/*',           // copy all files and subfolders
+            dest: '<%=config.devUrl %>/libs',    // destination folder
+            expand: true           // required when using cwd
           }
         ] 
       }
@@ -187,10 +199,10 @@ module.exports = function (grunt) {
     // clean unwanted folders
     clean: {
       production: {
-        src: ["dist/*",'.tmp/*']
+        src: ["<%=config.distUrl %>/*",'.tmp/*']
       },
       development: {
-        src: ["dev/*",'.tmp/*']
+        src: ["<%=config.devUrl %>/*",'.tmp/*']
       }
     },
     // validate all javascript files by jshint
@@ -207,11 +219,26 @@ module.exports = function (grunt) {
           '<%=config.appUrl %>javascripts/**/*.js'
         ]
       }
+    },
+    bower: {
+      install: {
+        options: {
+          targetDir: './libs',
+          layout: 'byType',
+          install: true,
+          verbose: false,
+          cleanTargetDir: false,
+          cleanBowerDir: false,
+          bowerOptions: {}
+        }
+      }
     }
   });
 
   /**
    *
+   * @name production
+   * @summery
    * This task will create the distribution version of the project
    * containing minified javaScript files and uglified css files
    * The destination is /dist
@@ -233,12 +260,14 @@ module.exports = function (grunt) {
 
   /**
    *
+   * @name development
+   * @summery
    * This task will create development files meaning
    * concats JavaScript files and renders SASS files but no minimization.
    * the destination of output files is dev/ directory
    *
    */
-  grunt.registerTask('development',[
+  grunt.registerTask('dev',[
     'concat:development',
     'copy:development',
     'sass:development',
@@ -246,13 +275,20 @@ module.exports = function (grunt) {
     //,'jshint:serve'
   ]);
 
+  grunt.registerTask('development',[
+    'bower',
+    'dev'
+  ]);
+
   /**
    *
+   * @name serve
+   * @summery
    * This task works same as build:serve, but watches for upcoming changes too.
    *
    */
   grunt.registerTask('serve', [
-    'development',
+    'dev',
     'connect:target',
     'watch'
   ]);

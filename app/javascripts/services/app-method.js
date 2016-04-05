@@ -1,21 +1,21 @@
 /**
- * Created by alihaghighatkhah on 3/13/16.
- */
-
-/**
  *
  *
  *
  */
-app.run(['$rootScope',
-  function ($rootScope) {
-    $rootScope.flags = {
-      menu: false
-    };
+define('./module', function (services) {
+  'use strict';
+  services.run(['$rootScope',
+    function ($rootScope) {
+      $rootScope.flags = {
+        menu: false
+      };
 
-    $rootScope.$on('$stateChangeStart', function() {
+      $rootScope.$on('$stateChangeStart', function() {
 
 
-    });
-  }
-]);
+      });
+    }
+  ]);
+});
+

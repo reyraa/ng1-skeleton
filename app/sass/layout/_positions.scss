@@ -1,6 +1,20 @@
 /*===================================
    Positioning and overall layouts
 =================================*/
+.l-table
+{
+  display: table;
+  height: 100%;
+  .l-table-cell
+  {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+
+
 .l-pinned
 {
   position: fixed !important;
@@ -32,7 +46,7 @@
   &.to-center
   {
     left: 50% !important;
-    @include transform( translateX(-50%) );
+    transform: translateX(-50%);
   }
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "ng1-skeleton",
   "version": "0.0.0",
   "moduleType": [
     "amd"
@@ -23,5 +23,9 @@
   },
   "resolutions": {
     "angular": "~1.4.9"
+  },
+  "devDependencies": {
+    "requirejs": "~2.2.0",
+    "requirejs-domready": "latest"
   }
 }

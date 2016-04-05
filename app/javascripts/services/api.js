@@ -1,6 +1,3 @@
-'use strict';
-
-
 /**
  *
  * @name Api
@@ -13,27 +10,32 @@
  * @requires $http As dependency for angular module
  *
  **/
-app.service('Api', [
-  '$http',
-  function ($http) {
 
-    /** products namespace */
-    this.items = {};
+define(['./module'], function (services) {
+  'use strict';
+  services.service('Api', [
+    '$http',
+    function ($http) {
 
-
-    /**
-     * @name items.getList
-     * @returns {object} data
-     */
-    this.items.getList = function () {
-      //Loader.global.show();
-      return $http.get(app.apiBaseUrl + 'items-list.json').success(function (response) {
-        /** hide the loader successful ajax request */
-        //Loader.global.hide();
-        return response.data;
-      });
-    };
+      /** home namespace */
+      this.items = {};
 
 
-  }
-]);
+      /**
+       * @name items.getList
+       * @returns {object} data
+       */
+      this.items.getList = function () {
+        //Loader.global.show();
+        return $http.get(app.apiBaseUrl + 'items-list.json').success(function (response) {
+          /** hide the loader successful ajax request */
+          //Loader.global.hide();
+          return response.data;
+        });
+      };
+
+
+    }
+  ]);
+});
+

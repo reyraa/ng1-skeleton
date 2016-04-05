@@ -1,33 +1,18 @@
-var app = angular.module('app',
-  ['ui.router']
-);
+define([
+  'angular',
+  'ui.router',
+  './controllers/index',
+  './directives/index',
+  './filters/index',
+  './services/index'
+], function (angular) {
+  'use strict';
 
-app.apiBaseUrl = '/api/';
-
-
-
-app.config(['$stateProvider', '$logProvider', '$urlRouterProvider',
-  function ($stateProvider, $logProvider, $urlRouterProvider) {
-    $logProvider.debugEnabled(true);
-
-    /**
-     *
-     * Defining states
-     * Here only one state is defined which is the detail page of the product
-     * as shown in PNG outputs
-     *
-     */
-    $stateProvider
-
-    .state('items', {
-      url: "/items",
-      templateUrl: "templates/items/main.html",
-      controller: 'ItemsController'
-    });
-
-    $urlRouterProvider.otherwise('/');
-
-
-  }
-]);
-
+  return angular.module('app', [
+    'ui.router',
+    'app.services',
+    'app.controllers',
+    'app.filters',
+    'app.directives'
+  ]);
+});
