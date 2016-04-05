@@ -7,11 +7,12 @@
  *
  */
 
-define(['./module', 'highchart'], function (controllers, highchart) {
+
+define(['./module'], function (controllers) {
   'use strict';
   controllers.controller('HomeController', ['$scope', function ($scope) {
 
-    highchart
+
     $scope.welcome = {
       title: 'ng1-skeleton',
       description: 'This project is an application skeleton for a typical AngularJS 1.X web app',
