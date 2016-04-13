@@ -11,7 +11,7 @@
  *
  **/
 
-define(['./module'], function (services) {
+define(['serviceModule'], function (services) {
   'use strict';
   services.service('Api', [
     '$http',

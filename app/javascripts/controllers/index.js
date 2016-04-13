@@ -1,3 +1,3 @@
-define([
-  './home'
-], function () {});
+// define([
+//   './home'
+// ], function () {});

@@ -60,16 +60,15 @@ module.exports = function (grunt) {
             '<%=config.devUrl %>/javascripts/directives.js': '<%=config.appUrl %>/javascripts/directives/*.js',
             '<%=config.devUrl %>/javascripts/services.js': '<%=config.appUrl %>/javascripts/services/*.js',
             '<%=config.devUrl %>/javascripts/filters.js': '<%=config.appUrl %>/javascripts/filters/*.js',
-            '<%=config.devUrl %>/javascripts/app.js': '<%=config.appUrl %>/javascripts/app.js'
+            '<%=config.devUrl %>/javascripts/app.js': '<%=config.appUrl %>/javascripts/app.js',
+            '<%=config.devUrl %>/javascripts/main.js': '<%=config.appUrl %>/javascripts/main.js',
+            '<%=config.devUrl %>/javascripts/routes.js': '<%=config.appUrl %>/javascripts/routes.js',
+            '<%=config.devUrl %>/javascripts/bootstrap.js': '<%=config.appUrl %>/javascripts/bootstrap.js'
           }
       },
       production:{
           files: {
-            '<%=config.distUrl %>/javascripts/controllers.js': '<%=config.appUrl %>/javascripts/controllers/*.js',
-            '<%=config.distUrl %>/javascripts/directives.js': '<%=config.appUrl %>/javascripts/directives/*.js',
-            '<%=config.distUrl %>/javascripts/services.js': '<%=config.appUrl %>/javascripts/services/*.js',
-            '<%=config.distUrl %>/javascripts/filters.js': '<%=config.appUrl %>/javascripts/filters/*.js',
-            '<%=config.distUrl %>/javascripts/app.js': '<%=config.appUrl %>/javascripts/app.js'
+            '<%=config.distUrl %>/javascripts/main.js': ['<%=config.appUrl %>/javascripts/*.js','<%=config.appUrl %>/javascripts/*/*.js'],
           }
       }
 

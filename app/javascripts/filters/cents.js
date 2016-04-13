@@ -5,7 +5,7 @@
  *
  **/
 
-define(['./module'], function (filters) {
+define(['filterModule'], function (filters) {
   'use strict';
   filters.filter('cents', [function () {
 

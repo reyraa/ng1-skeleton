@@ -1,4 +1,4 @@
-define([
-  './api',
-  './app-method'
-], function () {});
+// define([
+//   './api',
+//   './app-method'
+// ], function () {});

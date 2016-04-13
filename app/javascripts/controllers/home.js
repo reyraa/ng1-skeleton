@@ -8,7 +8,7 @@
  */
 
 
-define(['./module'], function (controllers) {
+define(['controllerModule'], function (controllers) {
   'use strict';
   controllers.controller('HomeController', ['$scope', function ($scope) {
 
