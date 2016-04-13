@@ -4,7 +4,7 @@
  * @summery the template of main header is separateled by this directive in order to make index.html more clear
  *
  */
-define(['./module'], function (directives) {
+define(['directiveModule'], function (directives) {
   'use strict';
   directives.directive('mainHeader', [function () {
 

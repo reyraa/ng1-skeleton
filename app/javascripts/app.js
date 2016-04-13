@@ -1,10 +1,10 @@
 define([
   'angular',
   'ui.router',
-  './controllers/index',
-  './directives/index',
-  './filters/index',
-  './services/index'
+  './controllers',
+  './directives',
+  './filters',
+  './services'
 ], function (angular) {
   'use strict';
 

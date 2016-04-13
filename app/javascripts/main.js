@@ -4,7 +4,7 @@ require.config({
   paths: {
     'domReady': '../libs/requirejs-domready/domReady',
     'angular': '../libs/angular/angular',
-    'ui.router': '../libs/angular-ui-router/angular-ui-router'
+    'ui.router': '../libs/angular-ui-router/release/angular-ui-router'
   },
 
   // angular does not support AMD out of the box, put it in a shim

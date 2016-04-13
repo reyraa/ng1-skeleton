@@ -3,7 +3,7 @@
  *
  *
  */
-define('./module', function (services) {
+define('serviceModule', function (services) {
   'use strict';
   services.run(['$rootScope',
     function ($rootScope) {
@@ -12,7 +12,6 @@ define('./module', function (services) {
       };
 
       $rootScope.$on('$stateChangeStart', function() {
-
 
       });
     }
